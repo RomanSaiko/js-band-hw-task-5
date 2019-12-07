@@ -1,7 +1,11 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
@@ -9,5 +13,5 @@
     "prettier/prettier": ["error"],
     "no-underscore-dangle": ["off"],
     "no-new": ["off"]
-  },
+  }
 }
