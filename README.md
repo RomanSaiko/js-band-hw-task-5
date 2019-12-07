@@ -1,3 +1,8 @@
+###Demo
+```
+https://romansaiko.github.io/js-band-hw-task-5/
+```
+
 ### Installation
 ```
 npm install
