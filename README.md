@@ -18,10 +18,5 @@ npm run build
 npm run test
 ```
 
-### Start commitizen tool
-```
-npm run commit
-```
-
 #### License
 [MIT](https://choosealicense.com/licenses/mit/)
