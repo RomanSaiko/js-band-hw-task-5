@@ -4,6 +4,7 @@ node_modules
 # misc
 .idea
 .DS_Store
+build
 
 package-lock.json
 npm-debug.log
