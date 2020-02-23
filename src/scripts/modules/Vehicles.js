@@ -14,9 +14,10 @@ export default class Vehicles {
   addVehicle(e) {
     e.preventDefault();
     const vehicleForm = e.target.id;
-    let setList;
+    let vehicleProperties;
+
     if (vehicleForm === 'create-truck') {
-      const truckProperties = {
+      vehicleProperties = {
         id: document.getElementById('truck-id').value,
         model: document.getElementById('truck-model').value,
         licensePlate: document.getElementById('license-plate').value,
@@ -25,7 +26,7 @@ export default class Vehicles {
         averageSpeed: document.getElementById('truck-average-speed').value,
         typeOfGas: document.getElementById('gas-type').value
       };
-      const truckItem = new TransportFactory('truck', truckProperties);
+      const truckItem = new TransportFactory('truck', vehicleProperties);
       const truckListItem = document.createElement('li');
       truckListItem.innerHTML = `
             <p>id - ${truckItem._id}</p>
@@ -37,9 +38,8 @@ export default class Vehicles {
             <p>Type of gas - ${truckItem._typeOfGas}</p> 
             `;
       this.transportList.appendChild(truckListItem);
-      setList = this.transportList.innerHTML;
     } else {
-      const shipProperties = {
+      vehicleProperties = {
         id: document.getElementById('ship-id').value,
         model: document.getElementById('ship-model').value,
         name: document.getElementById('ship-name').value,
@@ -48,7 +48,7 @@ export default class Vehicles {
         averageSpeed: document.getElementById('ship-average-speed').value,
         countOfTeam: document.getElementById('team-count').value
       };
-      const shipItem = new TransportFactory('ship', shipProperties);
+      const shipItem = new TransportFactory('ship', vehicleProperties);
       const shipListItem = document.createElement('li');
       shipListItem.innerHTML = `
             <p>id - ${shipItem._id}</p>
@@ -60,12 +60,19 @@ export default class Vehicles {
             <p>Count of Team - ${shipItem._countOfTeam}</p> 
             `;
       this.transportList.appendChild(shipListItem);
-      setList = this.transportList.innerHTML;
     }
+    let setList;
+    if (LocalStorage.getLocalStorageData() === null) {
+      setList = [];
+    } else {
+      setList = LocalStorage.getLocalStorageData();
+    }
+    setList.push(vehicleProperties);
     LocalStorage.setLocalStorageData(setList);
   }
 
   render() {
+    console.log(LocalStorage.getLocalStorageData());
     this.transportList.innerHTML = LocalStorage.getLocalStorageData();
   }
 }
