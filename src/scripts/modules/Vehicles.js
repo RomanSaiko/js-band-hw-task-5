@@ -72,7 +72,23 @@ export default class Vehicles {
   }
 
   render() {
-    console.log(LocalStorage.getLocalStorageData());
-    this.transportList.innerHTML = LocalStorage.getLocalStorageData();
+    const storageUsers = LocalStorage.getLocalStorageData();
+    console.log(storageUsers);
+    const keys = Object.keys(storageUsers);
+    console.log(keys);
+
+    storageUsers.forEach(item => {
+      const storageListItem = document.createElement('li');
+      storageListItem.innerHTML = `
+        <p>id - ${item.id}</p>
+        <p>Model - ${item.model}</p>
+        <p>License plate - ${item.licensePlate}</p>
+        <p>Produced year - ${item.producedYear}</p>
+        <p>Capacity - ${item.capacity}</p>
+        <p>Average speed - ${item.averageSpeed}</p>
+        <p>Type of gas - ${item.typeOfGas}</p>
+      `;
+      this.transportList.appendChild(storageListItem);
+    });
   }
 }
