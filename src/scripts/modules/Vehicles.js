@@ -73,20 +73,31 @@ export default class Vehicles {
 
   render() {
     const storageUsers = LocalStorage.getLocalStorageData();
-    console.log(storageUsers);
-    const keys = Object.keys(storageUsers);
-    console.log(keys);
-
+    let storageList3;
+    let storageListValue3;
+    let storageList7;
+    let storageListValue7;
     storageUsers.forEach(item => {
+      if (item.licensePlate !== undefined) {
+        storageList3 = 'License plate';
+        storageListValue3 = item.licensePlate;
+        storageList7 = 'Type of gas';
+        storageListValue7 = item.typeOfGas;
+      } else {
+        storageList3 = 'Serial number/Name';
+        storageListValue3 = item.name;
+        storageList7 = 'Count of team';
+        storageListValue7 = item.producedYear;
+      }
       const storageListItem = document.createElement('li');
       storageListItem.innerHTML = `
         <p>id - ${item.id}</p>
         <p>Model - ${item.model}</p>
-        <p>License plate - ${item.licensePlate}</p>
+        <p>${storageList3} - ${storageListValue3}</p>
         <p>Produced year - ${item.producedYear}</p>
         <p>Capacity - ${item.capacity}</p>
         <p>Average speed - ${item.averageSpeed}</p>
-        <p>Type of gas - ${item.typeOfGas}</p>
+        <p>${storageList7} - ${storageListValue7}</p>
       `;
       this.transportList.appendChild(storageListItem);
     });
